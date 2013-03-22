@@ -1,0 +1,5 @@
+c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\bin\Democratics.dll
+c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\bin\Democratics.pdb
+c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.csprojResolveAssemblyReference.cache
+c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.dll
+c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.pdb
