@@ -3,3 +3,8 @@ c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\b
 c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.csprojResolveAssemblyReference.cache
 c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.dll
 c:\users\tomasko\documents\visual studio 2012\Projects\Democratics\Democratics\obj\Debug\Democratics.pdb
+C:\Users\Tomasko\Documents\Visual Studio 2012\Projects\Democratics\NovaDemokracia\Democratics\bin\Democratics.dll
+C:\Users\Tomasko\Documents\Visual Studio 2012\Projects\Democratics\NovaDemokracia\Democratics\bin\Democratics.pdb
+C:\Users\Tomasko\Documents\Visual Studio 2012\Projects\Democratics\NovaDemokracia\Democratics\obj\Debug\Democratics.csprojResolveAssemblyReference.cache
+C:\Users\Tomasko\Documents\Visual Studio 2012\Projects\Democratics\NovaDemokracia\Democratics\obj\Debug\Democratics.dll
+C:\Users\Tomasko\Documents\Visual Studio 2012\Projects\Democratics\NovaDemokracia\Democratics\obj\Debug\Democratics.pdb

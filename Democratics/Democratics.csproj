@@ -66,18 +66,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomIdentity.cs" />
+    <Compile Include="CustomIdentity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Content Include="IdentityMessageInspector.cs" />
-    <Content Include="InterceptorBehaviorExtension.cs" />
+    <Compile Include="IdentityMessageInspector.cs" />
+    <Compile Include="InterceptorBehaviorExtension.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
-    <Content Include="IService1.cs" />
+    <Compile Include="IService1.cs" />
     <Content Include="Properties\AssemblyInfo.cs" />
-    <Content Include="UserValidator.cs" />
+    <Compile Include="UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
