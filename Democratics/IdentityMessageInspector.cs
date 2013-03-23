@@ -9,6 +9,7 @@ using System.IO;
 using System.ServiceModel;
 using System.Security.Principal;
 using System.Web.Security;
+using System.Web.Management;
 using System.Threading;
 using System.Collections;
 
@@ -21,13 +22,18 @@ namespace Democratics
             var messageProperty = (HttpRequestMessageProperty)
                 OperationContext.Current.IncomingMessageProperties[HttpRequestMessageProperty.Name];
             string cookie = messageProperty.Headers.Get("Set-Cookie");
+            new LogEvent("Set-Cookie="+cookie).Raise();
+
             if (cookie == null) // Check for another Message Header - SL applications
             {
                 cookie = messageProperty.Headers.Get("Cookie");
+                new LogEvent("Set-Cookie=NULL, Test for Cookie" + cookie).Raise();
             }
             if (cookie == null)
+            {
                 cookie = string.Empty;
-
+                new LogEvent("Cookie=NULL").Raise();
+            }
             Hashtable cookieTable = new Hashtable();
             string[] cookieValuePairs = cookie.Split(';');
             foreach (string pair in cookieValuePairs)
@@ -69,8 +75,13 @@ namespace Democratics
 
             // Set User Name from cookie
             if (cookieTable.ContainsKey(FormsAuthentication.FormsCookieName))
+            {
                 encryptedTicket = cookieTable[FormsAuthentication.FormsCookieName].ToString();
-
+            }
+            else
+            {
+                new LogEvent("CookieTable Not contains=" + FormsAuthentication.FormsCookieName).Raise();
+            }
             FormsAuthenticationTicket ticket = null;
             string userName = string.Empty;
             string roles = string.Empty;
@@ -132,6 +143,13 @@ namespace Democratics
         public void BeforeSendReply(ref Message reply, object correlationState)
         {
 
+        }
+    }
+    public class LogEvent : WebRequestErrorEvent
+    {
+        public LogEvent(string message)
+            : base(null, null, 100001, new Exception(message))
+        {
         }
     }
 }
