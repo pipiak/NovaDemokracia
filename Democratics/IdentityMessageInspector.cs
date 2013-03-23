@@ -22,12 +22,10 @@ namespace Democratics
             var messageProperty = (HttpRequestMessageProperty)
                 OperationContext.Current.IncomingMessageProperties[HttpRequestMessageProperty.Name];
             string cookie = messageProperty.Headers.Get("Set-Cookie");
-            new LogEvent("Set-Cookie="+cookie).Raise();
 
             if (cookie == null) // Check for another Message Header - SL applications
             {
                 cookie = messageProperty.Headers.Get("Cookie");
-                new LogEvent("Set-Cookie=NULL, Test for Cookie" + cookie).Raise();
             }
             if (cookie == null)
             {
@@ -35,53 +33,24 @@ namespace Democratics
                 new LogEvent("Cookie=NULL").Raise();
             }
             Hashtable cookieTable = new Hashtable();
-            string[] cookieValuePairs = cookie.Split(';');
-            foreach (string pair in cookieValuePairs)
-            {
-                
-                string[] splitted = pair.Split(',', '=');
-                if (splitted.Length == 1)
-                {
-                    //only key
-                    if (!cookieTable.ContainsKey(splitted[0]))
-                    {
-                        cookieTable.Add(splitted[0], string.Empty);
-                    }
-                }
-                else if (splitted.Length == 2)
-                {
-                    if (!cookieTable.ContainsKey(splitted[0]))
-                    {
-                        cookieTable.Add(splitted[0], splitted[1]);
-                    }
-                }
-                else if (splitted.Length == 4)
-                {
-                    if (!cookieTable.ContainsKey(splitted[0]))
-                    {
-                        cookieTable.Add(splitted[0], splitted[1]);
-                    }
-                }
-                else if (splitted.Length == 5)
-                {
-                    if (!cookieTable.ContainsKey(splitted[1]))
-                    {
-                        cookieTable.Add(splitted[1], splitted[2]);
-                    }
-                }
-            }
-
+           
             string encryptedTicket = string.Empty;
 
-            // Set User Name from cookie
-            if (cookieTable.ContainsKey(FormsAuthentication.FormsCookieName))
+            int start = cookie.IndexOf("AuthCookie=");
+            if (start >= 0)
             {
-                encryptedTicket = cookieTable[FormsAuthentication.FormsCookieName].ToString();
+                cookie = cookie.Substring(start+11, cookie.Length-11);
+                int end = cookie.IndexOf(";");
+                cookie = cookie.Substring(0, end);
+                //test for ,
+                int middle = cookie.IndexOf(",");
+                if (middle > 0)
+                {
+                    cookie = cookie.Substring(0, middle);
+                }
+                encryptedTicket = cookie;
             }
-            else
-            {
-                new LogEvent("CookieTable Not contains=" + FormsAuthentication.FormsCookieName).Raise();
-            }
+
             FormsAuthenticationTicket ticket = null;
             string userName = string.Empty;
             string roles = string.Empty;
