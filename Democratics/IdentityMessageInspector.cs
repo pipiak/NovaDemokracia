@@ -39,7 +39,7 @@ namespace Democratics
             int start = cookie.IndexOf("AuthCookie=");
             if (start >= 0)
             {
-                cookie = cookie.Substring(start + 11, cookie.Length - (start+11));
+                cookie = cookie.Substring(start, cookie.Length - start);
                 int end = cookie.IndexOf(";");
                 cookie = cookie.Substring(0, end);
                 //test for ,
@@ -48,7 +48,7 @@ namespace Democratics
                 {
                     cookie = cookie.Substring(0, middle);
                 }
-                encryptedTicket = cookie;
+                encryptedTicket = cookie.Replace("AuthCookie=", "");
                 new LogEvent("encryptedTicket=" + encryptedTicket).Raise();
             }
             else
