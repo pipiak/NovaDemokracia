@@ -17,5 +17,8 @@ namespace Democratics
 
         [OperationContract]
         string GetWriteData(int value);
+
+        [OperationContract]
+        bool AddNewUser(int Type, string UserName);
     }
 }

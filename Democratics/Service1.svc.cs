@@ -28,5 +28,11 @@ namespace Democratics
         {
             return string.Format("You entered: {0}", value);
         }
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        public bool AddNewUser(int Type, string UserName)
+        {
+            return true;
+        }
     }
 }
