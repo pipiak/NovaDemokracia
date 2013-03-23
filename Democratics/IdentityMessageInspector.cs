@@ -22,17 +22,17 @@ namespace Democratics
             var messageProperty = (HttpRequestMessageProperty)
                 OperationContext.Current.IncomingMessageProperties[HttpRequestMessageProperty.Name];
             string cookie = messageProperty.Headers.Get("Set-Cookie");
-
+            new LogEvent("Set-Cookie="+cookie).Raise();
             if (cookie == null) // Check for another Message Header - SL applications
             {
                 cookie = messageProperty.Headers.Get("Cookie");
+                new LogEvent("Cookie="+cookie).Raise();
             }
             if (cookie == null)
             {
                 cookie = string.Empty;
                 new LogEvent("Cookie=NULL").Raise();
             }
-            Hashtable cookieTable = new Hashtable();
            
             string encryptedTicket = string.Empty;
 
